@@ -43,14 +43,51 @@ npm test
 aws-architecture-copilot/
 ├── src/
 │   ├── agent/          # Core agent logic and state management
+│   │                   # - Agent workflow orchestration
+│   │                   # - State interface definitions
+│   │                   # - Architecture classification
+│   │
 │   └── tools/          # Agent tools (CDK generator, MCP client)
+│                       # - AWS Documentation MCP client helper
+│                       # - CDK code generator tool
+│                       # - Mermaid diagram generator tool
+│
 ├── tests/              # Jest test suites
+│                       # - Unit tests for tools and utilities
+│                       # - Integration tests for agent workflows
+│                       # - Contract tests for MCP integration
+│
 ├── deployment/         # AWS CDK infrastructure code
 │   ├── lib/            # CDK stack definitions
+│   │                   # - ECS Fargate service stack
+│   │                   # - Networking and security configurations
+│   │
 │   └── bin/            # CDK app entry point
+│                       # - Infrastructure deployment scripts
+│
 ├── examples/           # Learning examples and demos
+│                       # - Strands framework basic patterns
+│                       # - Bedrock model configuration
+│                       # - Tool and state management examples
+│                       # - MCP integration demonstrations
+│
 └── specs/              # Feature specifications and plans
+    └── 001-week1-setup/
+        ├── spec.md           # User stories and requirements
+        ├── plan.md           # Implementation approach
+        ├── tasks.md          # Task breakdown with dependencies
+        ├── quickstart.md     # Developer onboarding guide
+        └── research.md       # Technical research and decisions
 ```
+
+### Directory Purposes
+
+- **`src/agent/`**: Contains the core AI agent implementation including workflow orchestration, state management, and architecture classification logic
+- **`src/tools/`**: Reusable tools that the agent invokes (MCP client for AWS docs, CDK code generator, diagram generator)
+- **`tests/`**: Comprehensive test coverage including unit, integration, and contract tests following TDD practices
+- **`deployment/`**: AWS CDK infrastructure-as-code for deploying the agent to ECS Fargate
+- **`examples/`**: Educational scripts demonstrating Strands framework patterns and MCP integration
+- **`specs/`**: Complete feature specifications following SpecKit methodology with user stories, plans, and task breakdowns
 
 ## Prerequisites
 
