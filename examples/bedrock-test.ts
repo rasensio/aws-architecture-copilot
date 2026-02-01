@@ -1,13 +1,56 @@
+/**
+ * Bedrock Access Test
+ * 
+ * This script tests AWS Bedrock access and configuration.
+ * 
+ * Purpose:
+ * - Verify AWS credentials are configured
+ * - Confirm Bedrock model access is enabled
+ * - Test basic model invocation
+ * - Validate API connectivity
+ * 
+ * Prerequisites:
+ * 1. AWS CLI configured with valid credentials
+ * 2. AWS Bedrock model access enabled in console
+ * 3. Cross-region inference profiles enabled
+ * 
+ * What this tests:
+ * - AWS SDK client initialization
+ * - Bedrock API authentication
+ * - Model availability in us-east-1
+ * - Request/response format
+ * - Error handling and troubleshooting
+ * 
+ * Common Issues:
+ * - "AccessDenied": Check IAM permissions for bedrock:InvokeModel
+ * - "Invalid model identifier": Verify model ID and region
+ * - "Model not available": Enable model access in Bedrock console
+ * - Network errors: Check internet connectivity and AWS endpoints
+ * 
+ * Note: This uses the raw AWS SDK instead of Strands
+ * to isolate Bedrock connectivity issues from framework issues.
+ */
+
 import { BedrockRuntimeClient, InvokeModelCommand } from '@aws-sdk/client-bedrock-runtime';
 
 async function testBedrockAccess() {
   console.log('Testing AWS Bedrock access...\n');
 
+  // Create Bedrock client
+  // Uses default AWS credentials from:
+  // - Environment variables (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
+  // - AWS credentials file (~/.aws/credentials)
+  // - IAM role (if running on EC2/ECS/Lambda)
   const client = new BedrockRuntimeClient({
     region: 'us-east-1',
   });
 
   // Use cross-region inference profile for Claude 3.5 Sonnet
+  // Format: us.anthropic.claude-{model}-{version}
+  // Cross-region profiles provide:
+  // - Better availability (multi-region failover)
+  // - Load balancing across regions
+  // - Lower latency through intelligent routing
   const modelId = 'us.anthropic.claude-3-5-sonnet-20241022-v2:0';
   
   const payload = {

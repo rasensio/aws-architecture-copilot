@@ -147,6 +147,42 @@ npm test
 npm start
 ```
 
+### Example Scripts
+
+Learn Strands framework concepts by running the included examples:
+
+```bash
+# Example 1: Basic Agent
+npx tsx examples/01-basic-agent.ts
+# Demonstrates creating a simple agent with system prompt
+# Query: "What is AWS Lambda?"
+# Expected: Detailed explanation of AWS Lambda serverless computing
+
+# Example 2: Custom Bedrock Configuration
+npx tsx examples/02-bedrock-config.ts
+# Shows how to configure custom model parameters
+# Query: "What are the key components of a scalable web application on AWS?"
+# Expected: Architecture guidance with specific AWS services
+
+# Example 3: Agent with Tools
+npx tsx examples/03-agent-with-tools.ts
+# Demonstrates tool creation with Zod schemas
+# Query: "What is 42 multiplied by 137?"
+# Expected: Agent uses calculator tool, returns 5,754
+
+# Example 4: State Management
+npx tsx examples/04-agent-state.ts
+# Shows how to maintain state across agent invocations
+# Action: Increments counter 3 times
+# Expected: Final counter value is 3
+
+# Example 5: Streaming Responses
+npx tsx examples/05-streaming.ts
+# Demonstrates progressive text output
+# Query: "Tell me a short story about a cloud architect"
+# Expected: Text streams progressively (like ChatGPT)
+```
+
 ## Architecture
 
 The agent follows a 5-step workflow:

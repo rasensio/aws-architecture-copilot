@@ -108,11 +108,11 @@ description: "Week 1 Setup & Foundation - Implementation tasks organized by user
 
 - [X] T025 [P] [US2] Create examples/01-basic-agent.ts with basic Agent and systemPrompt querying "What is AWS Lambda?"
 - [X] T026 [P] [US2] Create examples/02-bedrock-config.ts with custom BedrockModel configuration (region, modelId, temperature=0.3, maxTokens=4096)
-- [ ] T027 [P] [US2] Create examples/03-agent-with-tools.ts with calculator tool using Zod schema (add, subtract, multiply, divide operations)
-- [ ] T028 [P] [US2] Create examples/04-agent-state.ts with counter tool demonstrating agent state management (increment counter 3 times)
-- [ ] T029 [P] [US2] Create examples/05-streaming.ts with agent.stream() demonstrating progressive text output
-- [ ] T030 [US2] Run all 5 example scripts and verify outputs: 01 (Lambda explanation), 02 (scalable web app), 03 (42×137=5754), 04 (counter=3), 05 (streaming story)
-- [ ] T031 [US2] Document example scripts in README.md with descriptions and expected outputs
+- [X] T027 [P] [US2] Create examples/03-agent-with-tools.ts with calculator tool using Zod schema (add, subtract, multiply, divide operations)
+- [X] T028 [P] [US2] Create examples/04-agent-state.ts with counter tool demonstrating agent state management (increment counter 3 times)
+- [X] T029 [P] [US2] Create examples/05-streaming.ts with agent.stream() demonstrating progressive text output
+- [X] T030 [US2] Run all 5 example scripts and verify outputs: 01 (Lambda explanation), 02 (scalable web app), 03 (42×137=5754), 04 (counter=3), 05 (streaming story)
+- [X] T031 [US2] Document example scripts in README.md with descriptions and expected outputs
 
 **Checkpoint**: At this point, User Stories 1, 2, AND 5 are complete - Strands learning examples working
 
