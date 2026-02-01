@@ -181,7 +181,66 @@ npx tsx examples/05-streaming.ts
 # Demonstrates progressive text output
 # Query: "Tell me a short story about a cloud architect"
 # Expected: Text streams progressively (like ChatGPT)
+
+# Example 6: MCP Integration
+npx tsx examples/06-mcp-integration.ts
+# Demonstrates AWS Documentation MCP server integration
+# Queries: High availability best practices, Well-Architected Framework pillars
+# Expected: Answers backed by official AWS documentation (10-30s response time)
+
+# Example 7: MCP Architecture Scenarios
+npx tsx examples/07-mcp-scenarios.ts
+# Tests multiple AWS architecture queries via MCP
+# Scenarios: Scalable web app, ElastiCache, RDS Multi-AZ, Lambda best practices
+# Expected: Comprehensive architecture guidance for each scenario (2-5 minutes total)
 ```
+
+### AWS Documentation MCP Setup
+
+The AWS Documentation MCP server provides real-time access to AWS best practices and documentation.
+
+**Prerequisites**:
+- Python 3.8+ installed: `python3 --version`
+- uvx installed: `brew install uv` (macOS) or `pip install uv`
+
+**Installation**:
+```bash
+# Test MCP server (Ctrl+C to exit)
+uvx awslabs.aws-documentation-mcp-server@latest
+```
+
+**Usage in Code**:
+```typescript
+import { Agent, BedrockModel } from '@strands-agents/sdk';
+import { createAwsDocsMCP } from './src/tools/mcpClient.js';
+
+// Create MCP client
+const mcpClient = await createAwsDocsMCP();
+
+// Create agent with MCP client attached
+const agent = new Agent({
+  systemPrompt: 'You are an AWS architecture expert.',
+  model: new BedrockModel({ modelId: '...' }),
+  tools: [mcpClient], // Agent can now query AWS docs
+});
+
+// Ask questions backed by AWS documentation
+const response = await agent.invoke('What are AWS best practices for high availability?');
+
+// Clean up
+await mcpClient.disconnect();
+```
+
+**Troubleshooting**:
+
+| Issue | Solution |
+|-------|----------|
+| `uvx: command not found` | Install with `brew install uv` (macOS) or `pip install uv` |
+| `python3: command not found` | Install Python 3.8+ from https://python.org |
+| Connection timeout | Increase `connectionWaitMs` in `createAwsDocsMCP(5000)` |
+| Slow responses (>30s) | Normal for MCP queries (fetching docs); expect 5-15s per query |
+| MCP server crashes | Check `AWS_REGION` environment variable is set |
+| No documentation returned | Verify internet connection; MCP server needs AWS docs access |
 
 ## Architecture
 

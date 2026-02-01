@@ -126,14 +126,14 @@ description: "Week 1 Setup & Foundation - Implementation tasks organized by user
 
 ### Implementation for User Story 3
 
-- [ ] T032 [US3] Verify Python and uvx installed with python3 --version and uvx --version
-- [ ] T033 [US3] Test AWS MCP server directly with uvx awslabs.aws-documentation-mcp-server@latest (Ctrl+C to exit)
-- [ ] T034 [P] [US3] Create src/tools/mcpClient.ts with createAwsDocsMCP() helper using StdioClientTransport and 2-second connection wait
-- [ ] T035 [P] [US3] Create examples/06-mcp-integration.ts with Agent using McpClient querying "AWS best practices for high availability" and "Well-Architected Framework pillars"
-- [ ] T036 [P] [US3] Create examples/07-mcp-scenarios.ts testing multiple AWS queries: scalable web app, ElastiCache, RDS Multi-AZ, Lambda best practices
-- [ ] T037 [US3] Run npx tsx examples/06-mcp-integration.ts and verify AWS documentation-backed responses within 10 seconds
-- [ ] T038 [US3] Run npx tsx examples/07-mcp-scenarios.ts and verify all 4 queries return relevant AWS content
-- [ ] T039 [US3] Document MCP setup and troubleshooting in README.md including uvx installation and connection timeout solutions
+- [X] T032 [US3] Verify Python and uvx installed with python3 --version and uvx --version
+- [X] T033 [US3] Test AWS MCP server directly with uvx awslabs.aws-documentation-mcp-server@latest (Ctrl+C to exit)
+- [X] T034 [P] [US3] Create src/tools/mcpClient.ts with createAwsDocsMCP() helper using StdioClientTransport and 2-second connection wait
+- [X] T035 [P] [US3] Create examples/06-mcp-integration.ts with Agent using McpClient querying "AWS best practices for high availability" and "Well-Architected Framework pillars"
+- [X] T036 [P] [US3] Create examples/07-mcp-scenarios.ts testing multiple AWS queries: scalable web app, ElastiCache, RDS Multi-AZ, Lambda best practices
+- [X] T037 [US3] Run npx tsx examples/06-mcp-integration.ts and verify AWS documentation-backed responses within 10 seconds
+- [X] T038 [US3] Run npx tsx examples/07-mcp-scenarios.ts and verify all 4 queries return relevant AWS content
+- [X] T039 [US3] Document MCP setup and troubleshooting in README.md including uvx installation and connection timeout solutions
 
 **Checkpoint**: At this point, User Stories 1, 2, 3, AND 5 are complete - MCP integration working
 
