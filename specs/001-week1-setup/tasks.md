@@ -166,12 +166,12 @@ description: "Week 1 Setup & Foundation - Implementation tasks organized by user
 
 **Purpose**: Final validation and documentation improvements
 
-- [ ] T050 [P] Update README.md with complete Quick Start section referencing quickstart.md
-- [ ] T051 [P] Add troubleshooting section to README.md covering common errors (module not found, AWS access denied, MCP timeout)
-- [ ] T052 Run complete validation sequence from quickstart.md: git clone → npm install → build → test → all examples
-- [ ] T053 [P] Create .github/agents/copilot-instructions.md documenting TypeScript + Strands + MCP stack for GitHub Copilot
-- [ ] T054 Commit all changes to 001-week1-setup branch with detailed commit message
-- [ ] T055 Push branch to GitHub and verify CI/CD passes (if configured)
+- [X] T050 [P] Update README.md with complete Quick Start section referencing quickstart.md
+- [X] T051 [P] Add troubleshooting section to README.md covering common errors (module not found, AWS access denied, MCP timeout)
+- [X] T052 Run complete validation sequence from quickstart.md: git clone → npm install → build → test → all examples
+- [X] T053 [P] Create .github/agents/copilot-instructions.md documenting TypeScript + Strands + MCP stack for GitHub Copilot
+- [X] T054 Commit all changes to 001-week1-setup branch with detailed commit message
+- [X] T055 Push branch to GitHub and verify CI/CD passes (if configured)
 
 ---
 
