@@ -106,7 +106,7 @@ description: "Week 1 Setup & Foundation - Implementation tasks organized by user
 
 ### Implementation for User Story 2
 
-- [ ] T025 [P] [US2] Create examples/01-basic-agent.ts with basic Agent and systemPrompt querying "What is AWS Lambda?"
+- [X] T025 [P] [US2] Create examples/01-basic-agent.ts with basic Agent and systemPrompt querying "What is AWS Lambda?"
 - [ ] T026 [P] [US2] Create examples/02-bedrock-config.ts with custom BedrockModel configuration (region, modelId, temperature=0.3, maxTokens=4096)
 - [ ] T027 [P] [US2] Create examples/03-agent-with-tools.ts with calculator tool using Zod schema (add, subtract, multiply, divide operations)
 - [ ] T028 [P] [US2] Create examples/04-agent-state.ts with counter tool demonstrating agent state management (increment counter 3 times)
