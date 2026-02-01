@@ -20,22 +20,42 @@ AI agent that generates AWS architectures from natural language using Strands + 
 
 ## Quick Start
 
-See [Quick Start Guide](specs/001-week1-setup/quickstart.md) for detailed setup instructions.
+**👉 For complete setup instructions, see the [Quick Start Guide](specs/001-week1-setup/quickstart.md)**
+
+### Fast Track (5 minutes)
 
 ```bash
-# Clone the repository
+# 1. Clone and navigate
 git clone https://github.com/rasensio/aws-architecture-copilot.git
 cd aws-architecture-copilot
 
-# Install dependencies
+# 2. Checkout Week 1 branch
+git checkout 001-week1-setup
+
+# 3. Install dependencies
 npm install
 
-# Build the project
+# 4. Build the project
 npm run build
 
-# Run tests
-npm test
+# 5. Verify installation
+npm test  # Should show "0 tests" - expected for Week 1
 ```
+
+### Prerequisites
+
+- **Node.js 20+**: Check with `node --version`
+- **AWS Account**: With Bedrock access enabled
+- **AWS CLI**: Configured with valid credentials
+- **Python 3.8+**: For MCP server (check with `python3 --version`)
+- **uvx**: Install with `brew install uv` (macOS) or `pip install uv`
+
+### Next Steps
+
+1. **Configure AWS credentials**: See [AWS Setup](#development) section below
+2. **Enable Bedrock access**: Follow instructions in Quick Start Guide
+3. **Run example scripts**: Try `npx tsx examples/01-basic-agent.ts`
+4. **Explore MCP integration**: Run `npx tsx examples/06-mcp-integration.ts`
 
 ## Project Structure
 
@@ -242,6 +262,161 @@ await mcpClient.disconnect();
 | MCP server crashes | Check `AWS_REGION` environment variable is set |
 | No documentation returned | Verify internet connection; MCP server needs AWS docs access |
 
+## Troubleshooting
+
+### Common Issues
+
+#### Module Not Found Errors
+
+**Problem**: `Cannot find module '@strands-agents/sdk'` or similar errors
+
+**Solutions**:
+```bash
+# Verify dependencies are installed
+npm list --depth=0
+
+# Reinstall if needed
+rm -rf node_modules package-lock.json
+npm install
+
+# Check Node.js version (must be 20+)
+node --version
+```
+
+#### AWS Access Denied
+
+**Problem**: `AccessDeniedException` when running Bedrock examples
+
+**Solutions**:
+```bash
+# Verify AWS credentials are configured
+aws sts get-caller-identity
+
+# Check AWS region is set
+aws configure get region  # Should show us-east-1
+
+# Verify Bedrock model access in console
+# Visit: https://console.aws.amazon.com/bedrock/home#/modelaccess
+# Enable "Anthropic Claude 3.5 Sonnet" if not already enabled
+```
+
+**IAM Permissions Required**:
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "bedrock:InvokeModel",
+        "bedrock:InvokeModelWithResponseStream"
+      ],
+      "Resource": "arn:aws:bedrock:*::foundation-model/*"
+    }
+  ]
+}
+```
+
+#### MCP Connection Timeout
+
+**Problem**: MCP examples hang or timeout
+
+**Solutions**:
+```bash
+# Test MCP server directly (Ctrl+C to exit)
+uvx awslabs.aws-documentation-mcp-server@latest
+
+# If server starts successfully, increase timeout in code:
+# Edit src/tools/mcpClient.ts:
+# Change: await createAwsDocsMCP(2000)
+# To:     await createAwsDocsMCP(5000)
+
+# Check Python/uvx installation
+python3 --version  # Should be 3.8+
+uvx --version      # Should show version number
+```
+
+#### TypeScript Compilation Errors
+
+**Problem**: `npm run build` fails with type errors
+
+**Solutions**:
+```bash
+# Check TypeScript version
+npm list typescript
+
+# Verify tsconfig.json exists and is valid
+cat tsconfig.json
+
+# Clean and rebuild
+rm -rf dist
+npm run build
+
+# Check for syntax errors in .ts files
+npx tsc --noEmit
+```
+
+#### Example Scripts Fail
+
+**Problem**: `npx tsx examples/01-basic-agent.ts` fails
+
+**Solutions**:
+```bash
+# Verify tsx is installed
+npm list tsx
+
+# Run with more verbose output
+NODE_OPTIONS="--trace-warnings" npx tsx examples/01-basic-agent.ts
+
+# Check .env file exists and has correct values
+cat .env  # Should have AWS_REGION and AWS_BEDROCK_MODEL_ID
+
+# Verify AWS_BEDROCK_MODEL_ID format
+# Correct:   us.anthropic.claude-3-5-sonnet-20241022-v2:0
+# Incorrect: anthropic.claude-sonnet-4-20250514-v1:0 (on-demand not supported)
+```
+
+#### Jest Test Failures
+
+**Problem**: `npm test` exits with error
+
+**Solutions**:
+```bash
+# Verify Jest is installed
+npm list jest
+
+# Check jest.config.js exists
+cat jest.config.js
+
+# Run with verbose output
+npm test -- --verbose
+
+# Note: 0 tests is expected for Week 1 (setup phase)
+# If you see "No tests found", this is correct
+```
+
+### Getting Help
+
+- **Documentation**: Check [Quick Start Guide](specs/001-week1-setup/quickstart.md)
+- **Technical Details**: Review [PROJECT_PLAN.md](PROJECT_PLAN.md)
+- **Architecture**: See [docs/architecture.mmd](docs/architecture.mmd)
+- **Issues**: Open an issue on GitHub with error details
+
+### Debug Mode
+
+Enable verbose logging for troubleshooting:
+
+```bash
+# TypeScript compilation
+npx tsc --noEmit --extendedDiagnostics
+
+# Node.js execution
+NODE_OPTIONS="--trace-warnings --trace-deprecation" npx tsx examples/01-basic-agent.ts
+
+# AWS SDK debugging
+AWS_SDK_JS_SUPPRESS_MAINTENANCE_MODE_MESSAGE=1 npx tsx examples/bedrock-test.ts
+```
+
 ## Architecture
 
 The agent follows a 5-step workflow:
@@ -269,12 +444,31 @@ MIT
 
 ## Status
 
-🚧 **Week 1: Setup & Foundation** (Feb 2-8, 2026) - In Progress
+✅ **Week 1: Setup & Foundation** (Feb 2-8, 2026) - **89% Complete (49/55 tasks)**
 
-- ✅ Repository initialized
-- 🔄 Dependencies installation (in progress)
-- ⏳ Strands framework learning
-- ⏳ MCP integration
-- ⏳ AWS Bedrock verification
+**Completed**:
+- ✅ Repository initialized with TypeScript + ESM
+- ✅ All dependencies installed (Strands, AWS SDK, Jest)
+- ✅ Build pipeline working (TypeScript → dist/)
+- ✅ AWS Bedrock access verified (Claude 3.5 Sonnet)
+- ✅ Strands framework examples (5 scripts)
+- ✅ MCP integration working (AWS Documentation server)
+- ✅ Technical architecture documented (PROJECT_PLAN.md)
 
-Next: Week 2 - Core agent development
+**In Progress**:
+- 🔄 Final polish and validation (Phase 8)
+
+**Next**: Week 2 - Core agent development (5-step workflow implementation)
+
+### Progress Tracking
+
+| Phase | Tasks | Status |
+|-------|-------|--------|
+| Setup | 4/4 | ✅ Complete |
+| Foundational | 7/7 | ✅ Complete |
+| User Story 1 | 6/6 | ✅ Complete |
+| User Story 5 | 7/7 | ✅ Complete |
+| User Story 2 | 7/7 | ✅ Complete |
+| User Story 3 | 8/8 | ✅ Complete |
+| User Story 4 | 10/10 | ✅ Complete |
+| Polish | 0/6 | 🔄 In Progress |
