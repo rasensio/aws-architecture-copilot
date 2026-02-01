@@ -32,10 +32,10 @@ description: "Week 1 Setup & Foundation - Implementation tasks organized by user
 
 **Purpose**: Create basic repository structure and configuration files
 
-- [ ] T001 Initialize Git repository with .gitignore excluding node_modules/, dist/, .env, *.log, cdk.out/, .DS_Store
-- [ ] T002 [P] Create directory structure: src/agent/, src/tools/, tests/, deployment/lib/, deployment/bin/, examples/
-- [ ] T003 [P] Create README.md with project description, features (Claude Sonnet 4, MCP, CDK), and tech stack
-- [ ] T004 [P] Create .env.example documenting AWS_REGION, AWS_BEDROCK_MODEL_ID, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
+- [X] T001 Initialize Git repository with .gitignore excluding node_modules/, dist/, .env, *.log, cdk.out/, .DS_Store
+- [X] T002 [P] Create directory structure: src/agent/, src/tools/, tests/, deployment/lib/, deployment/bin/, examples/
+- [X] T003 [P] Create README.md with project description, features (Claude Sonnet 4, MCP, CDK), and tech stack
+- [X] T004 [P] Create .env.example documenting AWS_REGION, AWS_BEDROCK_MODEL_ID, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
 ---
 
