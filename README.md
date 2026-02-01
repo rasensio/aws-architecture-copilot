@@ -108,10 +108,28 @@ aws-architecture-copilot/
 2. Configure your AWS credentials in `.env`:
    ```bash
    AWS_REGION=us-east-1
-   AWS_BEDROCK_MODEL_ID=anthropic.claude-sonnet-4-20250514-v1:0
+   AWS_BEDROCK_MODEL_ID=us.anthropic.claude-3-5-sonnet-20241022-v2:0
    ```
 
-3. Enable AWS Bedrock model access in the [AWS Console](https://console.aws.amazon.com/bedrock/home#/modelaccess)
+3. **Enable AWS Bedrock Model Access**:
+   - Open the [AWS Bedrock Console - Model Access](https://console.aws.amazon.com/bedrock/home#/modelaccess)
+   - Click **"Manage model access"** or **"Enable specific models"**
+   - Select **"Anthropic Claude 3.5 Sonnet"** (with cross-region inference)
+   - Click **"Request model access"** or **"Save changes"**
+   - Wait 1-2 minutes for approval (usually instant)
+
+4. **Verify Bedrock Access**:
+   ```bash
+   # Test that you can invoke the model
+   npx tsx examples/bedrock-test.ts
+   ```
+   
+   You should see a successful response explaining AWS Lambda.
+
+   **Troubleshooting**:
+   - If you get "AccessDenied", check IAM permissions for `bedrock:InvokeModel`
+   - If you get "invalid model identifier", ensure cross-region inference profiles are enabled
+   - Verify your AWS CLI is configured: `aws sts get-caller-identity`
 
 ### Build & Test
 

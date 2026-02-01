@@ -86,13 +86,13 @@ description: "Week 1 Setup & Foundation - Implementation tasks organized by user
 
 ### Implementation for User Story 5
 
-- [ ] T018 [US5] Verify AWS CLI installed and configured with aws sts get-caller-identity (shows account ID)
-- [ ] T019 [US5] Verify AWS region set to us-east-1 with aws configure get region
-- [ ] T020 [US5] Verify Bedrock model access enabled by running aws bedrock list-foundation-models --region us-east-1 | grep claude-sonnet-4
-- [ ] T021 [P] [US5] Create examples/bedrock-test.ts with BedrockModel invoking Claude Sonnet 4 with test query "What is AWS Lambda?"
-- [ ] T022 [US5] Run npx tsx examples/bedrock-test.ts and verify successful response without authentication errors
-- [ ] T023 [US5] Update .env.example with confirmed working values for AWS_REGION and AWS_BEDROCK_MODEL_ID
-- [ ] T024 [US5] Document AWS setup steps in README.md including Bedrock console link for model access
+- [X] T018 [US5] Verify AWS CLI installed and configured with aws sts get-caller-identity (shows account ID)
+- [X] T019 [US5] Verify AWS region set to us-east-1 with aws configure get region
+- [X] T020 [US5] Verify Bedrock model access enabled by running aws bedrock list-foundation-models --region us-east-1 | grep claude-sonnet-4
+- [X] T021 [P] [US5] Create examples/bedrock-test.ts with BedrockModel invoking Claude Sonnet 4 with test query "What is AWS Lambda?"
+- [X] T022 [US5] Run npx tsx examples/bedrock-test.ts and verify successful response without authentication errors
+- [X] T023 [US5] Update .env.example with confirmed working values for AWS_REGION and AWS_BEDROCK_MODEL_ID
+- [X] T024 [US5] Document AWS setup steps in README.md including Bedrock console link for model access
 
 **Checkpoint**: At this point, User Stories 1 AND 5 are complete - AWS Bedrock integration verified
 
