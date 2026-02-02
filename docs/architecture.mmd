@@ -1,0 +1,65 @@
+graph TB
+    subgraph INPUT["🙋 USER INPUT LAYER"]
+        User[Natural Language Requirement<br/>+ Constraints]
+    end
+    
+    subgraph AGENT["🤖 STRANDS AGENT CORE"]
+        State[Agent State<br/>ArchitectureState]
+        Bedrock[AWS Bedrock<br/>Claude Sonnet 4<br/>temp: 0.3, max: 8000]
+        
+        subgraph WORKFLOW["5-Step Workflow"]
+            W1[Step 1: Understand<br/>Parse requirements]
+            W2[Step 2: Retrieve<br/>Query AWS docs]
+            W3[Step 3: Design<br/>Select services]
+            W4[Step 4: Generate<br/>Create artifacts]
+            W5[Step 5: Return<br/>Format response]
+        end
+    end
+    
+    subgraph EXTERNAL["🌐 EXTERNAL SERVICES"]
+        MCP[AWS Documentation<br/>MCP Server<br/>via uvx]
+        MCPTools[MCP Tools:<br/>- search_documentation<br/>- read_documentation]
+    end
+    
+    subgraph TOOLS["🔧 AGENT TOOLS"]
+        CDK[CDK Generator<br/>TypeScript code]
+        Mermaid[Diagram Generator<br/>Mermaid.js flowcharts]
+    end
+    
+    subgraph OUTPUT["📤 OUTPUT LAYER"]
+        Response[Agent Response:<br/>1. Explanation<br/>2. Diagram<br/>3. CDK Code<br/>4. Cost Estimate<br/>5. Next Steps]
+    end
+    
+    %% Connections
+    User --> W1
+    W1 --> State
+    State --> W2
+    W2 --> MCP
+    MCP --> MCPTools
+    MCPTools --> W2
+    W2 --> State
+    State --> W3
+    W3 --> Bedrock
+    Bedrock --> W3
+    W3 --> State
+    State --> W4
+    W4 --> CDK
+    W4 --> Mermaid
+    CDK --> W4
+    Mermaid --> W4
+    W4 --> State
+    State --> W5
+    W5 --> Response
+    
+    %% Styling
+    classDef inputStyle fill:#E8F4F8,stroke:#2E86AB,stroke-width:2px
+    classDef agentStyle fill:#FFF4E6,stroke:#FF9900,stroke-width:2px
+    classDef externalStyle fill:#E8F5E9,stroke:#4CAF50,stroke-width:2px
+    classDef toolStyle fill:#F3E5F5,stroke:#9C27B0,stroke-width:2px
+    classDef outputStyle fill:#FFF3E0,stroke:#FF6F00,stroke-width:2px
+    
+    class User inputStyle
+    class State,Bedrock,W1,W2,W3,W4,W5 agentStyle
+    class MCP,MCPTools externalStyle
+    class CDK,Mermaid toolStyle
+    class Response outputStyle

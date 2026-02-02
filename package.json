@@ -1,0 +1,49 @@
+{
+  "name": "aws-architecture-copilot",
+  "version": "0.1.0",
+  "description": "AI agent that generates AWS architectures from natural language using Strands + AWS Bedrock",
+  "type": "module",
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "test": "jest --passWithNoTests",
+    "start": "node dist/index.js",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "aws",
+    "bedrock",
+    "claude",
+    "strands",
+    "mcp",
+    "architecture",
+    "cdk",
+    "infrastructure"
+  ],
+  "author": "rasensio",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rasensio/aws-architecture-copilot.git"
+  },
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.8",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.1.0",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.6",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.980.0",
+    "@strands-agents/sdk": "^0.2.0",
+    "aws-cdk-lib": "^2.236.0",
+    "constructs": "^10.4.5",
+    "zod": "^4.3.6"
+  }
+}
